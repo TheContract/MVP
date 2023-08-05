@@ -3,8 +3,6 @@
 
 const userController = {};
 
-
-
 userController.getUser = async (req, res, next) => {
     console.log('getuser invoked')
     if (!req.body)
