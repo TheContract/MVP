@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "build": "webpack",
     "dev": "webpack serve --open",
     "gulp-prod": "node_modules/.bin/gulp prod",
