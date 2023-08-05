@@ -47,13 +47,22 @@ module.exports = {
                 test: /.(css|scss)$/,
                 exclude: path.resolve(__dirname, 'node_modules'),
                 use: ['style-loader', 'css-loader', 'sass-loader']
-            }   
+            },
+            {
+                test: /\.html$/,
+                use: [
+                  {
+                    loader: 'html-loader',
+                  },
+                ],
+              },
         ]
     },
     plugins: [
         new webpack.ProvidePlugin({
            "React": "react",
         }),
+
      ],
 
 }

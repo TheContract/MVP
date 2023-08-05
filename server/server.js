@@ -22,11 +22,12 @@ app.use(express.urlencoded())
  *Routers - require, then define
  **/
 const apiRouter = require(`${__dirname}/routes/apiRouter.js`);
-app.use('/api',apiRouter);
+
+app.use('/api', apiRouter);
 
 
 
-app.get('/',(req,res)=>{
+app.get('/', (req,res)=> {
     return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
 })
 
