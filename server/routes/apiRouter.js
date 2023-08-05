@@ -10,7 +10,7 @@ const apiRouter = express.Router();
 
 apiRouter.get('user/:id',userController.getUser,((req,res)=>{
     res.status(200).json({});
-})
+}))
 
 
 apiRouter.get('/',(req,res)=>{
