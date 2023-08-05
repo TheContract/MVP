@@ -21,8 +21,8 @@ app.use(express.urlencoded())
 /**
  *Routers - require, then define
  **/
-const apiRouter = require(`${__dirname}/routes/apiRouter.js`);
-app.use('/api',apiRouter);
+// const apiRouter = require(`${__dirname}/routes/apiRouter.js`);
+// app.use('/api',apiRouter);
 
 
 
