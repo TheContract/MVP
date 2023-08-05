@@ -17,18 +17,28 @@ const AccountCreator = ()=> {
         // put the username into redux store
 
         Dispatch(updateUsername(loginInfo.username))
-        axios.post('/create')
+        axios.post('/api/user', loginInfo).then((data) => {console.log(data)}).catch(alert('something went wrong'))
 
     }
 
-    const usernameInputHandler = () =>{
+    const usernameInputHandler = (e) =>{
         //set input to state and redux
-        return 1
+        const {password} = loginInfo
+        const username = e.target.value
+        setLoginInfo({
+            username : username,
+            password:  password
+        })
     }
 
-    const passwordInputHandler = () =>{
+    const passwordInputHandler = (e) =>{
         //set input to state and redux
-        return 1
+        const {username} = loginInfo
+        const password = e.target.value
+        setLoginInfo({
+            username : username,
+            password:  password
+        })
     }
 
 
