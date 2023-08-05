@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+// const apiRouter = require('./routes/apiRouter');
 const app = express();
 const PORT = 3000;
 
@@ -23,8 +24,6 @@ app.use(express.urlencoded())
  **/
 // const apiRouter = require(`${__dirname}/routes/apiRouter.js`);
 // app.use('/api',apiRouter);
-
-
 
 app.get('/',(req,res)=>{
     return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
