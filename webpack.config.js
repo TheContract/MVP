@@ -45,13 +45,53 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
-  },
-  plugins: [
-    new webpack.ProvidePlugin({
-      React: 'react',
-    }),
-  ],
-};
+
+    output: {
+        path : path.resolve(__dirname, 'build'),
+        publicPath : '/',
+        filename : 'bundle.js',
+    },
+    mode: 'development',
+    module: {
+        rules: [
+            {
+                test: /.(js|jsx)$/,
+                exclude: path.resolve(__dirname, 'node_modules'),
+                // use: {
+                // },
+                use: [
+                    {loader : 'babel-loader',
+                    options: {
+                        presets:[
+                    '@babel/preset-env',
+                    '@babel/preset-react']
+                    }
+                }
+                ]
+            },
+            {
+                test: /.(css|scss)$/,
+                exclude: path.resolve(__dirname, 'node_modules'),
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.html$/,
+                use: [
+                  {
+                    loader: 'html-loader',
+                  },
+                ],
+            },
+        ]
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+           "React": "react",
+        }),
+
+     ],
+
+}
 // module.exports = {
 //     devServer : {
 //             open: 'http://localhost:8080',

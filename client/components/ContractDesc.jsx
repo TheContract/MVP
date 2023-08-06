@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContractDesc = () => {
+const ContractDesc = (props) => {
   return (
     <div>
       <div>Gym Contract</div>
