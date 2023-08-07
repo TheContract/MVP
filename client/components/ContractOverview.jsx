@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ContractReadOnlyTangibleRow from './ContractReadOnlyTangibleRow.jsx';
 
 const ContractOverview = (props) => {
@@ -9,6 +9,32 @@ const ContractOverview = (props) => {
   //Create layout for read-only rows for contract tangibles
 
   //Create layout for read-only rows for contract buddies
+
+  const checkContractsCompleteness = () => {
+    const incompleteRequiredFieldFound = false;
+    if (!props.theContract['goal']) {
+      incompleteRequiredFieldFound = true;
+      setErrorMessageForOverview(
+        `Your goal needs to be defined. What are you trying to achieve?`
+      );
+    } else {
+      for (let i = 0; i > theContract['tangibles'].length; i++) {
+        if (!theContract['tangibles'][i]) {
+          break;
+        }
+      }
+    }
+    if (!incompleteRequiredFieldFound) {
+      fetch('', {
+        method: POST,
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: props.theContract,
+      });
+    }
+  };
 
   return (
     <div>
@@ -23,10 +49,11 @@ const ContractOverview = (props) => {
           />
         ))}
       </div>
+      <div id='overviewErrorMessageDisplay'>{props.errorMessage}</div>
       <button
         class='contract-button-next'
         onClick={() => {
-          props.nextViewHandler('Contract In Blood Finished');
+          inputsErrorHandler('overview');
         }}>
         Sign In Blood
       </button>

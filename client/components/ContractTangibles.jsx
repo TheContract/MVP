@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContractEditableTangibleRow from './ContractEditableTangibleRow.jsx';
 import { v4 as uuidv4 } from 'uuid';
 
 const ContractTangibles = (props) => {
+  const [tangiblesErrorsMessage, setTangiblesErrorMessage] = useState('');
+
   const addTangibleHandler = () => {
-    const copyOfTangibles = [
+    const tangiblesPlusOne = [
       ...props.tangibles,
-      { id: uuidv4(), desc: '', count: 0, numberOfWeeks: 0 },
+      { id: uuidv4(), desc: '', count: 1, numberOfWeeks: 1 },
     ];
-    props.pushContractChanges('tangibles', copyOfTangibles);
+    props.pushContractChanges('tangibles', tangiblesPlusOne);
   };
 
   const updateTangibleHandler = (index, key, value) => {
@@ -17,10 +19,33 @@ const ContractTangibles = (props) => {
     props.pushContractChanges('tangibles', copyOfTangibles);
   };
 
-  const deleteTangibleHandler = (tangiblesId) => {
+  const deleteTangibleHandler = (tangiblesArrayId) => {
     const copyOfTangibles = props.tangibles.slice();
-    copyOfTangibles.splice(tangiblesId, 1);
+    copyOfTangibles.splice(tangiblesArrayId, 1);
     props.pushContractChanges('tangibles', copyOfTangibles);
+  };
+
+  const checkTangibleInputsBeforeNext = () => {
+    const copyOfTangibles = props.tangibles.slice();
+    let incompleteRequiredFieldFound = false;
+    for (let i = 0; i < copyOfTangibles.length; i++) {
+      if (
+        !copyOfTangibles[i]['desc'] ||
+        !copyOfTangibles[i]['count'] ||
+        !copyOfTangibles[i]['numberOfWeeks']
+      ) {
+        incompleteRequiredFieldFound = true;
+        break;
+      }
+    }
+    if (incompleteRequiredFieldFound)
+      setTangiblesErrorMessage(
+        `Please fill out all the fields, or remove the tangibles you don't have a complete plan for`
+      );
+    else {
+      setTangiblesErrorMessage('');
+      props.nextViewHandler('Contract Partners');
+    }
   };
 
   const tangibleRows = [];
@@ -46,15 +71,18 @@ const ContractTangibles = (props) => {
           onClick={() => {
             addTangibleHandler();
           }}>
-          Next
+          Add A Tangible
         </button>
-        <button
-          className='contract-button-next'
-          onClick={() => {
-            props.nextViewHandler('Contract Partners');
-          }}>
-          Next
-        </button>
+        <div id='tangiblesErrorMessageDisplay'>{props.errorMessage}</div>
+        <div>
+          <button
+            className='contract-button-next'
+            onClick={() => {
+              inputsErrorHandler('tangibles');
+            }}>
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
