@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const HomeDefault = (props) => {
+  const nav = useNavigate();
+
   return (
     <div id='homeDefault'>
       <div id='buttonContainer'>
         <button
           onClick={(e) => {
-            props.createContractFormHandle(
+            nav('/contractform');
+            /*props.createContractFormHandle(
               e,
               'Contract Form Name and Description'
-            );
-          }}
-        >
+            );*/
+          }}>
           Create
         </button>
       </div>

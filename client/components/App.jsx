@@ -1,25 +1,27 @@
-import React from "react"
-import { useNavigate } from "react-router-dom"
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import {BrowserRouter, Routes, Router, Switch, Route} from 'react-router-dom'
-import AccountCreator from "./AccountCreator.jsx"
-import Home from "../containers/Home.jsx"
-import Login from "./Login.jsx"
+import { BrowserRouter, Routes, Router, Switch, Route } from 'react-router-dom';
+import AccountCreator from './AccountCreator.jsx';
+import Home from '../containers/Home.jsx';
+import ContractForm from './ContractForm.jsx';
+import Login from './Login.jsx';
 const App = () => {
-    return (
-        <div className = 'browser-router'>
-        <BrowserRouter>
+  return (
+    <div className='browser-router'>
+      <BrowserRouter>
         <Routes>
-       <Route path = "/create" element = {<AccountCreator/>}></Route>
-      <Route path = "/home" element = {<Home/>}></Route>
-      <Route exact path="/" element= {<Login/>}></Route>
-    </Routes>
-    </BrowserRouter>
+          <Route path='/create' element={<AccountCreator />}></Route>
+          <Route path='/home' element={<Home />}></Route>
+          <Route path='/contractform' element={<ContractForm />}></Route>
+          <Route exact path='/' element={<ContractForm />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
-)
-}
+  );
+};
 
-export default App
+export default App;
 // incase donovan needs
 //    <Route path = "/createForm" element = {<Home/>}></Route>
 
@@ -30,7 +32,6 @@ export default App
 //    <Route exact path="/" element= {<Login/>}></Route>
 // </Routes>
 // </BrowserRouter>
-
 
 // <div className = "router">
 // <EntryForm></EntryForm>

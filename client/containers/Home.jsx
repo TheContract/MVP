@@ -16,28 +16,15 @@ fetch current contracts
 
 */
 const Home = () => {
-  const possibleViews = [
-    'Home',
-    'Contract Form Name and Description',
-    'Contract Form Quantifiable',
-    'Contract Form Accountability Partners',
-    'Form Composed Overview',
-  ];
-  const [currentView, setCurrentView] = useState('Home');
-
-  const currentViewHandler = (e, viewSwap) => {
-    setCurrentView(viewSwap);
-  };
-
   return (
     <div id='home'>
-      <div id='currentView'>
-        {currentView === 'Home' && (
-          <HomeDefault currentViewHandler={currentViewHandler} />
-        )}
-      </div>
+      <HomeDefault />
     </div>
   );
 };
-
+/*
+<div id='currentView'>
+        {currentView === 'Home' && ( <HomeDefault currentViewHandler={currentViewHandler} />)}
+      </div>
+*/
 export default Home;
