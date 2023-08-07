@@ -11,7 +11,7 @@ const contractController = require('../controllers/contractController.js');
 const apiRouter = express.Router();
 
 // login route
-apiRouter.get('/user', userController.verifyUser, cookieController.setSSIDCookie, sessionController.startSession, ((req,res)=>{
+apiRouter.post('/login', userController.verifyUser, cookieController.setSSIDCookie, sessionController.startSession, ((req,res)=>{
     res.status(200).json(res.locals.user);
 }));
 
