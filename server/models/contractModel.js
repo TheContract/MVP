@@ -18,9 +18,9 @@ mongoose.connect(MONGO_URI, {
     const contractSchema = new Schema({
         userId: {type: String, required: true},
         dateCreated: {type: Date},
-        whyString: {type: String},
+        purpose: {type: String},
         frequency: {type: Number},
-        goal: {type: String},
+        duration: {type: String},
         buddies: {type: Array},
         pdfLink: {type: String},
       });
