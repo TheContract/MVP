@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { BrowserRouter, Routes, Router, Switch, Route } from 'react-router-dom';
 import AccountCreator from './AccountCreator.jsx';
 import Home from '../containers/Home.jsx';
-import ContractForm from './ContractForm.jsx';
 import Login from './Login.jsx';
 const App = () => {
   return (
@@ -13,8 +12,7 @@ const App = () => {
         <Routes>
           <Route path='/create' element={<AccountCreator />}></Route>
           <Route path='/home' element={<Home />}></Route>
-          <Route path='/contractform' element={<ContractForm />}></Route>
-          <Route exact path='/' element={<ContractForm />}></Route>
+          <Route exact path='/' element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -45,8 +45,17 @@ sessionController.isLoggedIn = async (req, res, next) => {
 sessionController.startSession = async (req, res, next) => {
   //write code here
   if (res.locals.ssid) {
-    const sesh = await Session.create({cookieId: res.locals.ssid});
-    next()
+
+    // checks for a valid session
+    const foundSesh = await Session.findOne({cookieId: res.locals.ssid});
+    if (foundSesh) {
+        next();
+    }
+    // otherwise starts one
+    else {
+        const sesh = await Session.create({cookieId: res.locals.ssid});
+        next()
+    } 
   }
   else {
     next({
