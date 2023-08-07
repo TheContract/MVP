@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 
 const ContractEditableBuddyRow = (props) => {
   return (
-    <div
-      key={props.buddy['id']}
-      id={props.buddy['id']}
-      className='contractEditableBuddyRow'>
+    <div key={props.id} id={props.id} className='contractEditableBuddyRow'>
       <div className='buddysNameContainer'>
         <label htmlFor={`buddyName${props.id}`}>Name:</label>
         <input
