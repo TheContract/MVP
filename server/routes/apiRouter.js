@@ -7,6 +7,7 @@ const userController = require('../controllers/userController.js');
 const cookieController = require('../controllers/cookieController.js');
 const sessionController = require('../controllers/sessionController.js');
 const contractController = require('../controllers/contractController.js');
+const buddyController = require('../controllers/buddyController.js');
 
 const apiRouter = express.Router();
 
@@ -26,7 +27,7 @@ apiRouter.get('/contract', sessionController.isLoggedIn, contractController.find
 }));
 
 // create contract route - going to add buddy notification middleware here
-apiRouter.post('/contract', sessionController.isLoggedIn, contractController.createContract, ((req,res)=>{
+apiRouter.post('/contract', sessionController.isLoggedIn, contractController.createContract, buddyController.notifyBuddy, ((req,res)=>{
     // console.log('the locals are' + res.locals.ssid)
     res.status(200).json(res.locals.contract);
 }));
