@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContractEditableTangibleRow = (props) => {
   return (
-    <div key={props.tangible['id']} className='tangibleRow'>
+    <div key={props.id} className='tangibleRow'>
       I will{' '}
       <input
         className='tangibles-desc'

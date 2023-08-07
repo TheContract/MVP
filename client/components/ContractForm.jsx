@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ContractEditableGoal from './ContractEditableGoal.jsx';
 import ContractTangibles from './ContractTangibles.jsx';
 import ContractBuddies from './ContractBuddies.jsx';
@@ -20,24 +20,8 @@ const ContractForm = () => {
   const [currentView, setCurrentView] = useState(contractFormSteps[0]);
   const [contractDetails, updateContractDetails] = useState({
     goal: '',
-    tangibles: [
-      {
-        id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-        desc: 'yolo',
-        count: 2,
-        numberOfWeeks: 3,
-      },
-    ],
-    buddies: [
-      {
-        id: '9b1deb4d-3b7d-4bad-9bed-2b0d7b3dcb6d',
-        name: 'Olivers GF',
-        phoneNumber: '',
-        pushNoteToPhone: true,
-        //email: '',
-        //pushNoteToEmail: false,
-      },
-    ],
+    tangibles: [],
+    buddies: [],
   });
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -53,7 +37,7 @@ const ContractForm = () => {
     let incompleteRequiredFieldFound = false;
     if (!contractDetails['goal']) {
       setErrorMessage(
-        `Please fill out all the fields, or remove the tangibles you don't have a complete plan for`
+        `Establish your goal first before moving on. What are you trying to achieve?`
       );
       incompleteRequiredFieldFound = true;
     } else {
@@ -66,21 +50,27 @@ const ContractForm = () => {
   const checkContractsTangibles = () => {
     const copyOfTangibles = [...contractDetails['tangibles']];
     let incompleteRequiredFieldFound = false;
-    for (let i = 0; i < copyOfTangibles.length; i++) {
-      if (
-        !copyOfTangibles[i]['desc'] ||
-        !copyOfTangibles[i]['count'] ||
-        !copyOfTangibles[i]['numberOfWeeks']
-      ) {
-        incompleteRequiredFieldFound = true;
-        break;
+    if (copyOfTangibles.length === 0) {
+      incompleteRequiredFieldFound = true;
+      setErrorMessage(
+        `Set at least 1 tangible goal for yourself. You got this`
+      );
+    } else {
+      for (let i = 0; i < copyOfTangibles.length; i++) {
+        if (
+          !copyOfTangibles[i]['desc'] ||
+          !copyOfTangibles[i]['count'] ||
+          !copyOfTangibles[i]['numberOfWeeks']
+        ) {
+          incompleteRequiredFieldFound = true;
+          setErrorMessage(
+            `Please fill out all the fields, or remove the tangibles you don't have a complete plan for`
+          );
+          break;
+        }
       }
     }
-    if (incompleteRequiredFieldFound)
-      setErrorMessage(
-        `Please fill out all the fields, or remove the tangibles you don't have a complete plan for`
-      );
-    else {
+    if (!incompleteRequiredFieldFound) {
       setErrorMessage('');
       nextViewHandler('Contract Partners');
     }
@@ -89,24 +79,33 @@ const ContractForm = () => {
 
   const checkContractsBuddies = () => {
     let incompleteRequiredFieldFound = false;
-    for (let i = 0; i < contractDetails['buddies'].length; i++) {
-      if (
-        !contractDetails['buddies'][i]['name'] ||
-        (!contractDetails['buddies'][i]['phoneNumber'] &&
-          !contractDetails['buddies'][i]['email'])
-      ) {
-        incompleteRequiredFieldFound = false;
-        break;
+
+    if (contractDetails['buddies'].length === 0) {
+      incompleteRequiredFieldFound = true;
+      setErrorMessage(
+        `Set at least 1 Friend To Help You Stay Accountable. We got your back!`
+      );
+    } else {
+      for (let i = 0; i < contractDetails['buddies'].length; i++) {
+        if (
+          !contractDetails['buddies'][i]['name'] ||
+          (!contractDetails['buddies'][i]['phoneNumber'] &&
+            !contractDetails['buddies'][i]['email'])
+        ) {
+          incompleteRequiredFieldFound = false;
+          setErrorMessage(
+            `Please fill out all Accountability Partners names and at least a Phone Number or Email for each one, or delete the Accountability Partner`
+          );
+          break;
+        }
       }
     }
-    if (incompleteRequiredFieldFound)
-      setErrorMessage(
-        `Please fill out all Accountability Partners names and at least a Phone Number or Email for each one, or delete the Accountability Partner`
-      );
-    else {
+
+    if (!incompleteRequiredFieldFound) {
       setErrorMessage('');
       nextViewHandler('Contract Composed Overview');
     }
+    return incompleteRequiredFieldFound;
   };
 
   const inputsErrorHandler = (formDetailTarget) => {
@@ -123,8 +122,21 @@ const ContractForm = () => {
       (formDetailTarget === 'buddies' && !incompleteRequiredFieldFound)
     )
       incompleteRequiredFieldFound = checkContractsBuddies();
-    if (formDetailTarget === 'overview' && !incompleteRequiredFieldFound)
+    if (formDetailTarget === 'overview' && !incompleteRequiredFieldFound) {
+      console.log('contract details before fetch', contractDetails);
+      fetch('./api/contract', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(contractDetails),
+      })
+        .then((promise) => promise.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.log('error ocurred: ', err));
       nextViewHandler('Contract In Blood Finished');
+    }
     return incompleteRequiredFieldFound;
   };
 

@@ -8,7 +8,7 @@ const ContractTangibles = (props) => {
   const addTangibleHandler = () => {
     const tangiblesPlusOne = [
       ...props.tangibles,
-      { id: uuidv4(), desc: '', count: 1, numberOfWeeks: 1 },
+      { desc: '', count: 1, numberOfWeeks: 1 },
     ];
     props.pushContractChanges('tangibles', tangiblesPlusOne);
   };
@@ -25,28 +25,7 @@ const ContractTangibles = (props) => {
     props.pushContractChanges('tangibles', copyOfTangibles);
   };
 
-  const checkTangibleInputsBeforeNext = () => {
-    const copyOfTangibles = props.tangibles.slice();
-    let incompleteRequiredFieldFound = false;
-    for (let i = 0; i < copyOfTangibles.length; i++) {
-      if (
-        !copyOfTangibles[i]['desc'] ||
-        !copyOfTangibles[i]['count'] ||
-        !copyOfTangibles[i]['numberOfWeeks']
-      ) {
-        incompleteRequiredFieldFound = true;
-        break;
-      }
-    }
-    if (incompleteRequiredFieldFound)
-      setTangiblesErrorMessage(
-        `Please fill out all the fields, or remove the tangibles you don't have a complete plan for`
-      );
-    else {
-      setTangiblesErrorMessage('');
-      props.nextViewHandler('Contract Partners');
-    }
-  };
+  const checkTangibleInputsBeforeNext = () => {};
 
   const tangibleRows = [];
   let i = 0;
@@ -55,7 +34,7 @@ const ContractTangibles = (props) => {
       <ContractEditableTangibleRow
         id={i}
         tangible={props.tangibles[i]}
-        key={props.tangibles[i]['id']}
+        key={i}
         updateTangibleHandler={updateTangibleHandler}
         deleteTangibleHandler={deleteTangibleHandler}
       />
