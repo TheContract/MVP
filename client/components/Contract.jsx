@@ -35,14 +35,21 @@ const Contract = () => {
             <p>Error</p>
         </div>;
     }
+
+    if (contractInfo === null) {
+        return <div>
+        <p>No contracts yet! Create one below</p>
+    </div>;
+    }
     
     const username = 'Oliver'
     const date = 'august 12th';
-    let habit = 'Loading...' 
     console.log('the contract is')
     console.log(contractInfo)
+    
+    let habit = "lift";
     if (contractInfo.tangibles[0]) {
-        habit = contractInfo.tangibles[0].desc;
+        // habit = contractInfo.tangibles[0].desc;
     }
     let frequency = 'Loading...'
     if (contractInfo.tangibles[0].count) {
