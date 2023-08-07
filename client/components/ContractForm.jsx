@@ -58,7 +58,7 @@ const ContractForm = () => {
       incompleteRequiredFieldFound = true;
     } else {
       setTangiblesErrorMessage('');
-      props.nextViewHandler('Contract Tangibles');
+      nextViewHandler('Contract Tangibles');
     }
     return incompleteRequiredFieldFound;
   };
@@ -103,7 +103,7 @@ const ContractForm = () => {
       );
     else {
       setErrorMessage('');
-      props.nextViewHandler('Contract Composed Overview');
+      nextViewHandler('Contract Composed Overview');
     }
   };
 
@@ -121,6 +121,8 @@ const ContractForm = () => {
       (formDetailTarget === 'buddies' && !incompleteRequiredFieldFound)
     )
       incompleteRequiredFieldFound = checkContractsBuddies();
+    if (formDetailTarget === 'overview' && !incompleteRequiredFieldFound)
+      nextViewHandler('Contract In Blood Finished');
     return incompleteRequiredFieldFound;
   };
 

@@ -78,7 +78,7 @@ const ContractTangibles = (props) => {
           <button
             className='contract-button-next'
             onClick={() => {
-              inputsErrorHandler('tangibles');
+              props.inputsErrorHandler('tangibles');
             }}>
             Next
           </button>

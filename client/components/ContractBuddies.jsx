@@ -56,7 +56,7 @@ const ContractBuddies = (props) => {
           <button
             className='contract-button-next'
             onClick={() => {
-              inputsErrorHandler('buddies');
+              props.inputsErrorHandler('buddies');
             }}>
             Next
           </button>

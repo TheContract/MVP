@@ -22,7 +22,9 @@ const ContractEditableGoal = (props) => {
         <div>
           <button
             className='contract-button-next'
-            onClick={checkGoalBeforeNext}>
+            onClick={() => {
+              props.inputsErrorHandler('goal');
+            }}>
             Next
           </button>
         </div>
