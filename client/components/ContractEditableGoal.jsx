@@ -9,6 +9,7 @@ const ContractEditableGoal = (props) => {
     <div>
       <div>Gym Contract</div>
       <div>
+        <label htmlFor='contract-goal'>What is your Goal?</label>
         <input
           id='contract-goal'
           name='contract-goal'
@@ -18,7 +19,7 @@ const ContractEditableGoal = (props) => {
           }}
           value={props.goal}
         />
-        <div id='tangiblesErrorMessageDisplay'>{tangiblesErrorsMessage}</div>
+        <div id='tangiblesErrorMessageDisplay'>{props.errorMessage}</div>
         <div>
           <button
             className='contract-button-next'

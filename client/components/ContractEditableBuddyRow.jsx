@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 
 const ContractEditableBuddyRow = (props) => {
   return (
-    <div id={props.buddy['id']} className='contractEditableBuddyRow'>
+    <div
+      key={props.buddy['id']}
+      id={props.buddy['id']}
+      className='contractEditableBuddyRow'>
       <div className='buddysNameContainer'>
-        <label for={`buddyName${props.id}`}>Name:</label>
+        <label htmlFor={`buddyName${props.id}`}>Name:</label>
         <input
           id={`buddyName${props.id}`}
           className='buddysName'
@@ -15,7 +18,7 @@ const ContractEditableBuddyRow = (props) => {
         />
       </div>{' '}
       <div className='buddysPhoneNumberContainer'>
-        <label for={`buddyPhoneNumber${props.id}`}>Phone Number:</label>
+        <label htmlFor={`buddyPhoneNumber${props.id}`}>Phone Number:</label>
         <input
           id={`buddyPhoneNumber${props.id}`}
           className='buddysPhoneNumber'

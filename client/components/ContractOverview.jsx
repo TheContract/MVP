@@ -10,32 +10,6 @@ const ContractOverview = (props) => {
 
   //Create layout for read-only rows for contract buddies
 
-  const checkContractsCompleteness = () => {
-    const incompleteRequiredFieldFound = false;
-    if (!props.theContract['goal']) {
-      incompleteRequiredFieldFound = true;
-      setErrorMessageForOverview(
-        `Your goal needs to be defined. What are you trying to achieve?`
-      );
-    } else {
-      for (let i = 0; i > theContract['tangibles'].length; i++) {
-        if (!theContract['tangibles'][i]) {
-          break;
-        }
-      }
-    }
-    if (!incompleteRequiredFieldFound) {
-      fetch('', {
-        method: POST,
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: props.theContract,
-      });
-    }
-  };
-
   return (
     <div>
       Contract Overview
@@ -51,9 +25,9 @@ const ContractOverview = (props) => {
       </div>
       <div id='overviewErrorMessageDisplay'>{props.errorMessage}</div>
       <button
-        class='contract-button-next'
+        className='contract-button-next'
         onClick={() => {
-          inputsErrorHandler('overview');
+          props.inputsErrorHandler('overview');
         }}>
         Sign In Blood
       </button>
