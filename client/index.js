@@ -9,7 +9,8 @@ import {store} from './redux/store.js'
 import {Provider} from 'react-redux'
 import Login from './components/Login.jsx';
 const root = createRoot(document.getElementById('root'));
-
+import './styles.css'
+import '../dist/output.css';
 
 root.render(
   <Provider store = {store}>
