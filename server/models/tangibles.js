@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
 
+
+const mongoose = require('mongoose');
 const MONGO_URI = 'mongodb+srv://oliver:letmein6969@cluster0.xzmle9b.mongodb.net/';
 
 mongoose.connect(MONGO_URI, {
@@ -15,16 +16,15 @@ mongoose.connect(MONGO_URI, {
     const Schema = mongoose.Schema;
   
 
-    const userSchema = new Schema({
-        username: {type: String, required: true, unique: true},
-        password: {type: String, required: true},
-        type: {type: String},
-        contracts: {type: Array}
+    // define tangibles schema
+    const tangiblesSchema = new Schema({
+        description: {type: String},
+        count: {type: Number},
+        numberOfWeeks: {type: Number}
       });
 
+    const Tangibles = mongoose.model('tangibles', tangiblesSchema);
 
-    const User = mongoose.model('ContractUser', userSchema);
 
-
-module.exports = User;
+module.exports = {Tangibles, tangiblesSchema};
 

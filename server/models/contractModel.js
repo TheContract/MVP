@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-
+const Tangibles = require('./tangibles');
+const {tangiblesSchema} = require(__dirname + '/tangibles.js');
 const MONGO_URI = 'mongodb+srv://oliver:letmein6969@cluster0.xzmle9b.mongodb.net/';
 
 mongoose.connect(MONGO_URI, {
@@ -16,10 +17,14 @@ mongoose.connect(MONGO_URI, {
   
 
     const contractSchema = new Schema({
+        userId: {type: String},
         dateCreated: {type: Date},
-        habitDetails: {type: String, required: true},
+        purpose: {type: String},
+        frequency: {type: Number},
+        duration: {type: String},
         buddies: {type: Array},
         pdfLink: {type: String},
+        tangibles : [tangiblesSchema]
       });
       
 
