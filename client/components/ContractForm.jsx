@@ -50,21 +50,22 @@ const ContractForm = () => {
   };
 
   const checkContractsGoal = () => {
-    incompleteRequiredFieldFound = false;
-    if (!props.goal) {
-      setTangiblesErrorMessage(
+    let incompleteRequiredFieldFound = false;
+    if (!contractDetails['goal']) {
+      setErrorMessage(
         `Please fill out all the fields, or remove the tangibles you don't have a complete plan for`
       );
       incompleteRequiredFieldFound = true;
     } else {
-      setTangiblesErrorMessage('');
+      setErrorMessage('');
       nextViewHandler('Contract Tangibles');
     }
     return incompleteRequiredFieldFound;
   };
 
   const checkContractsTangibles = () => {
-    incompleteRequiredFieldFound = false;
+    const copyOfTangibles = [...contractDetails['tangibles']];
+    let incompleteRequiredFieldFound = false;
     for (let i = 0; i < copyOfTangibles.length; i++) {
       if (
         !copyOfTangibles[i]['desc'] ||
@@ -88,10 +89,11 @@ const ContractForm = () => {
 
   const checkContractsBuddies = () => {
     let incompleteRequiredFieldFound = false;
-    for (let i = 0; i < props.buddies.length; i++) {
+    for (let i = 0; i < contractDetails['buddies'].length; i++) {
       if (
-        !props.buddies[i]['name'] ||
-        (!props.buddies[i]['phoneNumber'] && !props.buddies[i]['email'])
+        !contractDetails['buddies'][i]['name'] ||
+        (!contractDetails['buddies'][i]['phoneNumber'] &&
+          !contractDetails['buddies'][i]['email'])
       ) {
         incompleteRequiredFieldFound = false;
         break;
@@ -108,7 +110,7 @@ const ContractForm = () => {
   };
 
   const inputsErrorHandler = (formDetailTarget) => {
-    incompleteRequiredFieldFound = false;
+    let incompleteRequiredFieldFound = false;
     if (formDetailTarget === 'overview' || formDetailTarget === 'goal')
       incompleteRequiredFieldFound = checkContractsGoal();
     if (
