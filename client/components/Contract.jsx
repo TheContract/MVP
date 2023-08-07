@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const Contract = async () => {
+const Contract = () => {
     const [contractInfo, setContractInfo] = useState();
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [errorStatus, setError] = useState();
 
     useEffect(() => {
         const findContract = async () => {
             try {
-                const foundContract = await fetch('./api/contract', {
-                    method: "GET"
-                  })
-                setContractInfo(foundContract)
+                let result = axios.get('/api/contract')
+                .then((data) => {
+                    setContractInfo(data.data)
+                    setLoading(false)
+                })
             }
 
             catch (error) {
@@ -23,25 +25,39 @@ const Contract = async () => {
     }, [])
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>
+            <p>Loading...</p>
+            </div>;
       }
     
-    if (error) {
-        return <div>Error: {error.message}</div>;
+    if (errorStatus) {
+        return <div>
+            <p>Error</p>
+        </div>;
     }
     
     const username = 'Oliver'
     const date = 'august 12th';
-    const habit = contractInfo.tangibles[0].desc;
-    const frequency = contractInfo.tangibles[0].count;
-    const duration = contractInfo.tangibles[0].numberOfWeeks;
-    
+    let habit = 'Loading...' 
+    console.log('the contract is')
+    console.log(contractInfo)
+    if (contractInfo.tangibles[0]) {
+        habit = contractInfo.tangibles[0].desc;
+    }
+    let frequency = 'Loading...'
+    if (contractInfo.tangibles[0].count) {
+        frequency = contractInfo.tangibles[0].count;
+    }
+    let duration = 'Loading...'
+    if (contractInfo.tangibles[0]) {
+        duration = contractInfo.tangibles[0].numberOfWeeks;
+    }
+
     return (
         <div>
             <p>I, {username} commited to {habit} {frequency} times per week for {duration} weeks.</p>
             <p>signed</p>
-            <img></img>
         </div>
-    )
+    );
 }
 export default Contract;

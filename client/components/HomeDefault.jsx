@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Contract from './Contract.jsx';
 
 const HomeDefault = (props) => {
   const nav = useNavigate();
@@ -17,6 +18,9 @@ const HomeDefault = (props) => {
           }}>
           Create
         </button>
+      </div>
+      <div>
+        <Contract></Contract>
       </div>
       <div id='currentContractsContainer'>
         <ul>
