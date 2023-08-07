@@ -9,7 +9,7 @@ const buddyController = {};
 
 buddyController.notifyBuddy = async (req, res, next) => {
     try {
-
+        
         const user = await User.findOne({_id: req.cookies.ssid})
         const username = user.username;
         const buddyName = req.body.buddies[0].name;

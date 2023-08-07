@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 const Contract = async () => {
-
     const [contractInfo, setContractInfo] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -20,6 +19,7 @@ const Contract = async () => {
                 setLoading(false);
             }
         }
+        findContract();
     }, [])
 
     if (loading) {
@@ -29,7 +29,6 @@ const Contract = async () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-    
     
     const username = 'Oliver'
     const date = 'august 12th';
@@ -45,7 +44,4 @@ const Contract = async () => {
         </div>
     )
 }
-
-
-
 export default Contract;
