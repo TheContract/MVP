@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ContractEditableBuddyRow from './ContractEditableBuddyRow.jsx';
+import { v4 as uuidv4 } from 'uuid';
 
 const ContractBuddies = (props) => {
   const [buddiesErrorsMessage, setBuddiesErrorMessage] = useState('');
@@ -39,7 +40,7 @@ const ContractBuddies = (props) => {
           <ContractEditableBuddyRow
             id={indexInArray}
             buddy={buddy}
-            key={buddy['id']}
+            key={indexInArray}
             updateBuddyHandler={updateBuddyHandler}
             deleteBuddyHandler={deleteBuddyHandler}
           />

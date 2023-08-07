@@ -2,6 +2,8 @@ import React from "react"
 import { useNavigate } from 'react-router-dom'
 import { useState } from "react"
 import axios from "axios"
+import '/dist/output.css';
+
 const Login = () => {
     const nav = useNavigate()
     const [loginObj, setLoginObj] = useState({})
@@ -60,11 +62,10 @@ const Login = () => {
             <label>Password</label>
             <input id = "passwordLogin" onChange={passwordHandler}></input>
         </form>
-        <button onClick={clickHandler}>Log in</button>    
-        <button onClick={createAccount}>Create Account</button>    
+        <button onClick={clickHandler} className = 'btn-primary '>Log in</button>    
+        <button onClick={createAccount} className = 'btn-secondary'>Create Account</button>    
 
     </div>
     )
 }
 export default Login
-

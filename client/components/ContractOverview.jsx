@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ContractReadOnlyTangibleRow from './ContractReadOnlyTangibleRow.jsx';
+import ContractReadOnlyBuddyRow from './ContractReadOnlyBuddyRow.jsx';
+import { v4 as uuidv4 } from 'uuid';
 
 const ContractOverview = (props) => {
-  const contractDesc = props.theContract['desc'];
+  const contractGoal = props.theContract['goal'];
   const contractTangibles = props.theContract['tangibles'];
   const contractBuddies = props.theContract['buddies'];
 
@@ -13,14 +15,19 @@ const ContractOverview = (props) => {
   return (
     <div>
       Contract Overview
-      <div id='contract-desc'>{contractDesc}</div>
+      <div id='contract-goal'>Goal:{contractGoal}</div>
       <div id='contractTangibles'>
         {contractTangibles.map((tangible, index) => (
           <ContractReadOnlyTangibleRow
             id={index}
             tangible={tangible}
-            key={tangible['id']}
+            key={uuidv4()}
           />
+        ))}
+      </div>
+      <div id='contractBuddies'>
+        {contractBuddies.map((buddy, index) => (
+          <ContractReadOnlyBuddyRow id={index} buddy={buddy} key={uuidv4()} />
         ))}
       </div>
       <div id='overviewErrorMessageDisplay'>{props.errorMessage}</div>

@@ -8,7 +8,7 @@ const ContractTangibles = (props) => {
   const addTangibleHandler = () => {
     const tangiblesPlusOne = [
       ...props.tangibles,
-      { id: uuidv4(), desc: '', count: 1, numberOfWeeks: 1 },
+      { desc: '', count: 1, numberOfWeeks: 1 },
     ];
     props.pushContractChanges('tangibles', tangiblesPlusOne);
   };
@@ -34,7 +34,7 @@ const ContractTangibles = (props) => {
       <ContractEditableTangibleRow
         id={i}
         tangible={props.tangibles[i]}
-        key={props.tangibles[i]['id']}
+        key={i}
         updateTangibleHandler={updateTangibleHandler}
         deleteTangibleHandler={deleteTangibleHandler}
       />
