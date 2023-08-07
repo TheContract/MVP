@@ -1,3 +1,4 @@
+const { error } = require('console');
 const Contract = require('../models/contractModel.js');
 
 
@@ -12,11 +13,18 @@ contractController.createContract = async (req, res, next) => {
     // console.log('the locals are' + res.locals.ssid)
     try {
         const { ssid } = req.cookies;
-        const newContract = await Contract.create({userId: ssid});
+        const {goal, tangibles, buddies} = req.body
+        console.log(ssid)
+        console.log("reached contract create")
+        console.log(goal + " is the value in goals")
+        console.log( tangibles + " is the tangibles val")
+        const newContract = await Contract.create({userId: ssid, tangibles: tangibles, purpose: goal});
         res.locals.contract = newContract;
         return next()
     }
-    catch {
+    catch (error){
+        console.log(error)
+        console.log(error.message)
         next({
             log: 'error creating contract',
             status: 500,
