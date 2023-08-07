@@ -51,15 +51,17 @@ const AccountCreator = ()=> {
 
 
     return(
-        <div>
+        <div
+        className="flex h-screen items-center justify-center flex-col"
+        >
         <h1>Create an account</h1>
-        <form>
+        <form className = "flex-col">
             <label>Username</label>
-            <input onChange = {usernameInputHandler}></input>
+            <input className="input-bordered" onChange = {usernameInputHandler}></input>
             <label>Password</label>
-            <input type = "password" onChange = {passwordInputHandler}></input>
+            <input className="input-bordered"type = "password" onChange = {passwordInputHandler}></input>
         </form>
-        <button onClick = {accountSubmitButtonHandler}>Create account</button>
+        <button onClick = {accountSubmitButtonHandler} className = "btn">Create account</button>
         </div>
     )
 

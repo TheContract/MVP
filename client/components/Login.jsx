@@ -51,20 +51,36 @@ const Login = () => {
             password : e.target.value
         })
     }
+// <div class="flex h-screen items-center justify-center flex-col" style="background-image: url('https://img95.lovepik.com/photo/40107/8988.gif_wh300.gif'); background-size: cover;">
+// whoever picks this up is more than welcome to change the ridiculous bg gif
 
     return (
-    <div>
+        <div
+        className="flex h-screen items-center justify-center flex-col"
+        style={{
+          backgroundImage: "url('https://img95.lovepik.com/photo/40107/8988.gif_wh300.gif')",
+          backgroundSize: "cover",
+        }}
+      >
+      <h1 style = {{
+        color: "white",
+        fontSize : "48"
+      }}>Welcome to Contract</h1>
+      <h2 style = {{
+        color: "white",
+        fontSize : "32"
+      }}>Get large today. Sign in/up below</h2>
         <form>
-            <label>Username</label>
-            <input id = "usernameLogin" onChange={usernameHandler}></input>
+            <input placeholder = "Username" id = "usernameLogin" onChange={usernameHandler} className="input-bordered" ></input>
         </form>
         <form>
-            <label>Password</label>
-            <input id = "passwordLogin" onChange={passwordHandler}></input>
+            <input placeholder = "password" id = "passwordLogin" onChange={passwordHandler} className = "input-bordered" type = "password"></input>
         </form>
-        <button onClick={clickHandler} className = 'btn-primary '>Log in</button>    
-        <button onClick={createAccount} className = 'btn-secondary'>Create Account</button>    
+        <button onClick={clickHandler} className = 'btn'style={{
+            marginBottom : "10px"
+        }}>Log in</button>    
 
+        <button onClick={createAccount} className = 'btn'>Create Account</button>    
     </div>
     )
 }
