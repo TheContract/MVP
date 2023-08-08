@@ -17,6 +17,8 @@ const App = () => {
           <Route path='/contractform' element={<ContractForm />}></Route>
 
           <Route exact path='/' element={<Login />}></Route>
+          {/* <Route exact path='/' element={<Home />}></Route> */}
+
         </Routes>
       </BrowserRouter>
     </div>

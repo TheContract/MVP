@@ -60,11 +60,33 @@ const Contract = () => {
         duration = contractInfo.tangibles[0].numberOfWeeks;
     }
 
+    const styles = {
+        container: {
+          border: '1px solid black',
+          borderRadius: '10px',
+          height: '300px',
+          width: '600px',
+          marginBottom: '20px',
+          padding: '15px',
+          fontFamily: 'Arial',
+          alignItems: 'center',
+          justifyContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          fontSize : '24px'
+          // backgroundColor: 'darkgrey'
+          
+        },
+}
+
     return (
-        <div>
+        <div style={styles.container}>
             <p>I, {username} commited to {habit} {frequency} times per week for {duration} weeks.</p>
-            <p>signed</p>
         </div>
     );
-}
+
+    
+
+} 
+
 export default Contract;

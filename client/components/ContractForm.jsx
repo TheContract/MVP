@@ -3,6 +3,8 @@ import ContractEditableGoal from './ContractEditableGoal.jsx';
 import ContractTangibles from './ContractTangibles.jsx';
 import ContractBuddies from './ContractBuddies.jsx';
 import ContractOverview from './ContractOverview.jsx';
+import ContractFormedCongrats from './ContractFormedConrgats.jsx';
+
 
 //temporary import for this component
 import { v4 as uuidv4 } from 'uuid';
@@ -133,15 +135,18 @@ const ContractForm = () => {
         body: JSON.stringify(contractDetails),
       })
         .then((promise) => promise.json())
-        .then((data) => console.log(data))
+        .then((data) => nextViewHandler('Contract In Blood Finished'))
         .catch((err) => console.log('error ocurred: ', err));
-      nextViewHandler('Contract In Blood Finished');
+      
     }
     return incompleteRequiredFieldFound;
   };
 
   return (
-    <div id='contractForm'>
+    <div id='contractForm' className = "flex h-screen items-center justify-center flex-col" style = {{
+      background: 'rgb(221,236,235)',
+      background: 'linear-gradient(90deg, rgba(221,236,235,1) 0%, rgba(91,178,215,1) 98%)',
+    }}>
       {currentView === 'Contract Goal' && (
         <ContractEditableGoal
           nextViewHandler={nextViewHandler}
@@ -175,9 +180,9 @@ const ContractForm = () => {
           inputsErrorHandler={inputsErrorHandler}></ContractOverview>
       )}
       {currentView === 'Contract In Blood Formed' && (
-        <ContractOverview
+        <ContractFormedCongrats
           theContract={theContract}
-          nextViewHandler={nextViewHandler}></ContractOverview>
+          nextViewHandler={nextViewHandler}></ContractFormedCongrats>
       )}
     </div>
   );

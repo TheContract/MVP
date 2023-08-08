@@ -37,7 +37,7 @@ const ContractEditableTangibleRow = (props) => {
       />{' '}
       weeks.{' '}
       <button
-        className='button-delete'
+        className='button-delete btn'
         onClick={(e) => {
           props.deleteTangibleHandler(props.id);
         }}>

@@ -69,7 +69,7 @@ const Login = () => {
       <h2 style = {{
         color: "white",
         fontSize : "32"
-      }}>Get large today. Sign in/up below</h2>
+      }}>Get fit today. Sign in/up below</h2>
         <form>
             <input placeholder = "Username" id = "usernameLogin" onChange={usernameHandler} className="input-bordered" ></input>
         </form>

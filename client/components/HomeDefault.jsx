@@ -6,9 +6,13 @@ const HomeDefault = (props) => {
   const nav = useNavigate();
 
   return (
-    <div id='homeDefault'>
+    <div id='homeDefault' className="flex h-screen items-center justify-center flex-col" style = {{
+      background: 'rgb(221,236,235)',
+      background: 'linear-gradient(90deg, rgba(221,236,235,1) 0%, rgba(91,178,215,1) 98%)',
+    }}>
+    
       <div id='buttonContainer'>
-        <button
+        <button class = 'btn'
           onClick={(e) => {
             nav('/contractform');
             /*props.createContractFormHandle(
@@ -20,16 +24,16 @@ const HomeDefault = (props) => {
         </button>
       </div>
       <div>
+      <h2 style = {{
+        fontSize: '32px'
+        
+      }}>Your contract(s)</h2>
         <Contract></Contract>
       </div>
       <div id='currentContractsContainer'>
-        <ul>
-          <li>Contract 1</li>
-          <li>Contract 2</li>
-        </ul>
       </div>
       <div id='buttonLogoutContainer'>
-        <button>Logout</button>
+        <button class = 'btn'>Logout</button>
       </div>
     </div>
   );

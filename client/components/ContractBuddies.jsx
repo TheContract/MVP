@@ -46,7 +46,7 @@ const ContractBuddies = (props) => {
           />
         ))}
         <button
-          className='contract-button-add'
+          className='contract-button-add btn'
           onClick={() => {
             addBuddyHandler();
           }}>
@@ -55,7 +55,7 @@ const ContractBuddies = (props) => {
         <div id='buddiesErrorMessageDisplay'>{props.errorMessage}</div>
         <div>
           <button
-            className='contract-button-next'
+            className='contract-button-next btn'
             onClick={() => {
               props.inputsErrorHandler('buddies');
             }}>
