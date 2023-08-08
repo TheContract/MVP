@@ -6,10 +6,12 @@ const ContractEditableGoal = (props) => {
   const checkGoalBeforeNext = () => {};
 
   return (
-    <div>
+    <div >
       <div>Gym Contract</div>
       <div>
-        <label htmlFor='contract-goal'>What is your Goal?</label>
+        <label htmlFor='contract-goal' style = {{
+          fontSize : '32px'
+        }}>What is your Goal?</label>
         <input
           id='contract-goal'
           name='contract-goal'
@@ -22,7 +24,7 @@ const ContractEditableGoal = (props) => {
         <div id='tangiblesErrorMessageDisplay'>{props.errorMessage}</div>
         <div>
           <button
-            className='contract-button-next'
+            className='contract-button-next btn'
             onClick={() => {
               props.inputsErrorHandler('goal');
             }}>

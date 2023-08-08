@@ -51,15 +51,30 @@ const AccountCreator = ()=> {
 
 
     return(
-        <div>
-        <h1>Create an account</h1>
-        <form>
-            <label>Username</label>
-            <input onChange = {usernameInputHandler}></input>
-            <label>Password</label>
-            <input type = "password" onChange = {passwordInputHandler}></input>
+        <div
+        style={{
+            backgroundImage: "url('https://img95.lovepik.com/photo/40107/8988.gif_wh300.gif')",
+            backgroundSize: "cover",
+          }}
+        className="flex h-screen items-center justify-center flex-col"
+        >
+        <h1 style = {{
+            color : "white",
+            fontSize : '24px'
+        }}>Create an account</h1>
+        <form className = "flex-col">
+            <label style = {{
+                color : "white",
+                fontSize : '24px'
+            }}>Username</label>
+            <input className="input-bordered" onChange = {usernameInputHandler}></input>
+            <label style = {{
+                color : "white",
+                fontSize : '24px'
+            }}>Password</label>
+            <input className="input-bordered"type = "password" onChange = {passwordInputHandler}></input>
         </form>
-        <button onClick = {accountSubmitButtonHandler}>Create account</button>
+        <button onClick = {accountSubmitButtonHandler} className = "btn">Create account</button>
         </div>
     )
 

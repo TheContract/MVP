@@ -6,7 +6,7 @@ const ContractFormedCongrats = (props) => {
   return (
     <div>
       Contract In Blood Formed....CONGRATS!!!
-      <button
+      <button className = "btn"
         onClick={() => {
           nav('/');
         }}>

@@ -15,24 +15,37 @@ const ContractOverview = (props) => {
   return (
     <div>
       Contract Overview
-      <div id='contract-goal'>Goal:{contractGoal}</div>
-      <div id='contractTangibles'>
-        {contractTangibles.map((tangible, index) => (
-          <ContractReadOnlyTangibleRow
-            id={index}
-            tangible={tangible}
-            key={uuidv4()}
-          />
-        ))}
+      <div class="contract-overview-container">
+        <div className="title">Contract Goal</div>
+        <div id='contract-goal'>Goal:{contractGoal}</div>
       </div>
-      <div id='contractBuddies'>
-        {contractBuddies.map((buddy, index) => (
-          <ContractReadOnlyBuddyRow id={index} buddy={buddy} key={uuidv4()} />
-        ))}
+
+
+      <div class="contract-overview-container">
+        <div className="title">Contract Tangibles</div>
+        <div id='contractTangibles'>
+          {contractTangibles.map((tangible, index) => (
+            <ContractReadOnlyTangibleRow
+              id={index}
+              tangible={tangible}
+              key={uuidv4()}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div class="contract-overview-container">
+        <div className="title">Contract Buddies</div>
+
+        <div id='contractBuddies'>
+          {contractBuddies.map((buddy, index) => (
+            <ContractReadOnlyBuddyRow id={index} buddy={buddy} key={uuidv4()} />
+          ))}
+        </div>
       </div>
       <div id='overviewErrorMessageDisplay'>{props.errorMessage}</div>
       <button
-        className='contract-button-next'
+        className='contract-button-next btn'
         onClick={() => {
           props.inputsErrorHandler('overview');
         }}>

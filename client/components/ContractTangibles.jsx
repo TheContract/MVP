@@ -41,12 +41,14 @@ const ContractTangibles = (props) => {
     );
   }
   return (
-    <div>
-      <div>
+    <div >
+      <div style = {{
+        fontSize : '32px'
+      }}>
         Contract Tangibles
-        <div id='listOfTangibles'>{tangibleRows}</div>
+        <div id='listOfTangibles' >{tangibleRows}</div>
         <button
-          className='contract-button-add'
+          className='contract-button-add btn'
           onClick={() => {
             addTangibleHandler();
           }}>
@@ -55,7 +57,7 @@ const ContractTangibles = (props) => {
         <div id='tangiblesErrorMessageDisplay'>{props.errorMessage}</div>
         <div>
           <button
-            className='contract-button-next'
+            className='contract-button-next btn'
             onClick={() => {
               props.inputsErrorHandler('tangibles');
             }}>
